@@ -5,3 +5,7 @@ resources:
   - mysql-deployment.yaml
   - mysql-service.yaml
   - nginx-configmap.yaml
+
+# Add labels to all resources
+commonLabels:
+  app.kubernetes.io/managed-by: argocd
