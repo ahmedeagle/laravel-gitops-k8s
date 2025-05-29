@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: laravel
+  template:
+    metadata:
+      labels:
+        app: laravel
+    spec:
+      imagePullSecrets:
+        - name: ecr-secret
+      volumes:
+        #- name: code-volume
+         # emptyDir: {}
+        - name: nginx-config
+          configMap:
+            name: laravel-nginx-config
+      containers:
+        - name: php-fpm
+          image: 043309367638.dkr.ecr.us-east-1.amazonaws.com/laravel-k8s:latest
+         # volumeMounts:
+          #  - name: code-volume
+           #   mountPath: /var/www
+          env:
+            - name: DB_HOST
+              value: mysql
+          envFrom:
+            - secretRef:
+                name: laravel-secrets
+        - name: nginx
+          image: nginx:alpine
+          volumeMounts:
+            #- name: code-volume
+             # mountPath: /var/www
+            - name: nginx-config
+              mountPath: /etc/nginx/conf.d
