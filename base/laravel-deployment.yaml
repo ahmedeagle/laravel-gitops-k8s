@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: laravel-app
+  labels:
+    app: laravel
 spec:
   replicas: 1
   selector:
@@ -15,17 +17,14 @@ spec:
       imagePullSecrets:
         - name: ecr-secret
       volumes:
-        #- name: code-volume
-         # emptyDir: {}
         - name: nginx-config
           configMap:
             name: laravel-nginx-config
       containers:
         - name: php-fpm
           image: 043309367638.dkr.ecr.us-east-1.amazonaws.com/laravel-k8s:latest
-         # volumeMounts:
-          #  - name: code-volume
-           #   mountPath: /var/www
+          ports:
+            - containerPort: 9000
           env:
             - name: DB_HOST
               value: mysql
@@ -34,8 +33,8 @@ spec:
                 name: laravel-secrets
         - name: nginx
           image: nginx:alpine
+          ports:
+            - containerPort: 80
           volumeMounts:
-            #- name: code-volume
-             # mountPath: /var/www
             - name: nginx-config
               mountPath: /etc/nginx/conf.d
