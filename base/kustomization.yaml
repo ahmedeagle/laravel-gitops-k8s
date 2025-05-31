@@ -5,6 +5,7 @@ resources:
   - mysql-deployment.yaml
   - mysql-service.yaml
   - nginx-configmap.yaml
+  - migrate-job.yaml
 
 # Add labels to all resources
 commonLabels:

@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: laravel-migrate
+  #namespace: laravel
+spec:
+  backoffLimit: 1
+  template:
+    spec:
+      containers:
+        - name: migrate
+          image: 043309367638.dkr.ecr.us-east-1.amazonaws.com/laravel-k8s:latest
+          command: ["php", "artisan", "migrate", "--force"]
+          envFrom:
+            - secretRef:
+                name: laravel-secrets
+      restartPolicy: Never
