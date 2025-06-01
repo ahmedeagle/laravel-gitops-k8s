@@ -10,13 +10,21 @@ spec:
   ttlSecondsAfterFinished: 60
   template:
     spec:
+      restartPolicy: Never
       imagePullSecrets:
         - name: ecr-secret
-      restartPolicy: Never
       initContainers:
         - name: wait-for-mysql
-          image: busybox
-          command: ['sh', '-c', 'until mysqladmin ping -h mysql -uroot -proot --silent; do echo "Waiting for MySQL login..."; sleep 5; done']
+          image: mysql:8.0
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for MySQL to be ready...";
+              until mysqladmin ping -h mysql -uroot -proot --silent; do
+                echo "Still waiting...";
+                sleep 5;
+              done
       containers:
         - name: migrate
           image: 043309367638.dkr.ecr.us-east-1.amazonaws.com/laravel-k8s:latest
