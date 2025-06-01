@@ -16,7 +16,7 @@ spec:
       initContainers:
         - name: wait-for-mysql
           image: busybox
-          command: ['sh', '-c', 'until nc -z mysql 3306; do echo "Waiting for MySQL..."; sleep 5; done']
+          command: ['sh', '-c', 'until mysqladmin ping -h mysql -uroot -proot --silent; do echo "Waiting for MySQL login..."; sleep 5; done']
       containers:
         - name: migrate
           image: 043309367638.dkr.ecr.us-east-1.amazonaws.com/laravel-k8s:latest
