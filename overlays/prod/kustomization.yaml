@@ -1,5 +1,7 @@
 resources:
-  - ../../base
+  - ../../base/laravel
+  - ../../base/mysql
+  - ../../base/jobs
 
 patchesStrategicMerge:
   - patch-laravel-secrets.yaml

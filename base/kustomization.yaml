@@ -1,11 +1,8 @@
 resources:
-  - laravel-deployment.yaml
-  - laravel-service.yaml
-  - laravel-secrets.yaml
-  - mysql-deployment.yaml
-  - mysql-service.yaml
-  - nginx-configmap.yaml
- # - migrate-job.yaml
+  - laravel/
+  - mysql/
+  - jobs/
+  - secrets/
 
 # Add labels to all resources
 commonLabels:
