@@ -30,17 +30,20 @@ spec:
           image: mysql:8.0
           ports:
             - containerPort: 3306
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: root
-            - name: MYSQL_DATABASE
-              value: laravel
+          #env:
+            #- name: MYSQL_ROOT_PASSWORD
+              #value: 
+            #- name: MYSQL_DATABASE
+              #value: 
+          envFrom:
+            - secretRef:
+                name: laravel-secrets
           readinessProbe:
             exec:
               command:
                 - sh
                 - -c
-                - mysqladmin ping -h 127.0.0.1 -uroot -proot
+                - mysqladmin ping -h 127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD}
             initialDelaySeconds: 10
             periodSeconds: 5
             timeoutSeconds: 3

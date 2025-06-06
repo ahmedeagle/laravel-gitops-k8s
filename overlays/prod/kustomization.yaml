@@ -1,7 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 resources:
   - ../../base/laravel
   - ../../base/mysql
   - ../../base/jobs
+  - ../../base/secrets/laravel-secret-sealed.yaml  # Using existing sealed secrets
 
 patchesStrategicMerge:
-  - patch-laravel-secrets.yaml
+  - patch-laravel-replicas.yaml
+
+# Production environment uses existing sealed secrets
