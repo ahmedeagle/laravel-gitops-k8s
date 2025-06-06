@@ -2,6 +2,6 @@
 #dev
 base/secrets/.env 
 #prod
-base/secrets/laravel-secret.yaml
+base/secrets/laravel-secrets.yaml
 kubeseal
 *.tar.gz
