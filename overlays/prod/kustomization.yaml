@@ -6,6 +6,7 @@ resources:
 - ../../base/mysql
 - ../../base/jobs
 - ../../base/secrets
+- ../../base/pvc-laravel-storage.yaml
 
 patches:
 - path: patch-laravel-replicas.yaml
