@@ -9,3 +9,4 @@ resources:
 
 patchesStrategicMerge:
   - patch-laravel-replicas.yaml
+  - patch-laravel-pvc.yaml

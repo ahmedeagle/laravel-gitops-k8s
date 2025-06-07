@@ -1,4 +1,5 @@
 resources:
+  - pvc-laravel-storage.yaml
   - laravel/
   - mysql/
   - jobs/
