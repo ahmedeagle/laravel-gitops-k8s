@@ -3,6 +3,7 @@ kind: PersistentVolumeClaim #a Kubernetes object that requests disk storage from
 metadata:
   name: laravel-storage-pvc
 spec:
+  storageClassName: ""         # Use default
   accessModes:
     - ReadWriteMany
  # storageClassName: efs-sc  AWS EFS volume already created #EFS CSI driver installed in your cluster #A StorageClass YAML like this:
