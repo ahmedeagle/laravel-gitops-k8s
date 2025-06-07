@@ -8,12 +8,13 @@ resources:
 
 # Development environment uses .env file for secrets
 secretGenerator:
-  - name: laravel-secrets
-    files:
-      - ../../base/secrets/.env
-    type: Opaque
+- files:
+  - ../../base/secrets/.env
+  name: laravel-secrets
+  type: Opaque
 generatorOptions:
   disableNameSuffixHash: true
 
-patchesStrategicMerge:
-- patch-laravel-replicas.yaml
+patches:
+- path: patch-laravel-replicas.yaml
+- path: patch-laravel-replicas.yaml
