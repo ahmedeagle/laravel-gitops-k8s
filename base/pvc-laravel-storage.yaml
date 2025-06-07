@@ -5,7 +5,8 @@ metadata:
 spec:
   storageClassName: standard        # Use default
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce # This means the volume can be mounted as read-write by a single node.
+  # Uncomment the following line if you want to use AWS EFS
  # storageClassName: efs-sc  AWS EFS volume already created #EFS CSI driver installed in your cluster #A StorageClass YAML like this:
   resources:
     requests:
