@@ -5,6 +5,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
+ # storageClassName: efs-sc  AWS EFS volume already created #EFS CSI driver installed in your cluster #A StorageClass YAML like this:
   resources:
     requests:
       storage: 1Gi # Default size (overridden in overlays)

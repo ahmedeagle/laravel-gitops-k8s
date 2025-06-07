@@ -17,4 +17,4 @@ generatorOptions:
 
 patches:
 - path: patch-laravel-replicas.yaml
-- path: patch-laravel-replicas.yaml
+- path: patch-laravel-pvc.yaml
