@@ -1,9 +1,9 @@
 resources:
-- pvc-laravel-storage.yaml
 - laravel/
 - mysql/
 - jobs/
 - secrets/
+- pvc-laravel-storage.yaml
 
 # Add labels to all resources
 apiVersion: kustomize.config.k8s.io/v1beta1
