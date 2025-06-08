@@ -4,7 +4,6 @@ metadata:
   name: laravel-storage-pvc
   
 spec:
-  storageClassName: standard        # Use default
   resources:
     requests:
       storage: 1Gi #the laravel-storage-pvc should present in base and we overwrite one thing only 
