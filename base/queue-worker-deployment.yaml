@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: laravel-worker
+  template:
+    metadata:
+      labels:
+        app: laravel-worker
+    spec:
+      containers:
+        - name: worker
+          image: 043309367638.dkr.ecr.us-east-1.amazonaws.com/laravel-k8s:latest
+          command: ["php", "artisan", "queue:work"]
+          envFrom:
+            - secretRef:
+                name: laravel-secrets

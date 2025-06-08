@@ -4,6 +4,10 @@ resources:
 - jobs/
 - secrets/
 - pvc-laravel-storage.yaml
+- queue-worker-deployment.yaml
+- laravel-scheduler-cronjob.yaml
+# This file is a Kustomization file for Kubernetes, which allows you to manage and customize Kubernetes resources.
+
 
 # Add labels to all resources
 apiVersion: kustomize.config.k8s.io/v1beta1
