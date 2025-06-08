@@ -21,6 +21,16 @@ spec:
         - name: wait-for-mysql
           image: busybox
           command: ['sh', '-c', 'until nc -z mysql 3306; do echo "Waiting for MySQL..."; sleep 5; done']
+        - name: fix-storage-permissions
+          image: busybox
+          command: ["sh", "-c", "chown -R 1000:1000 /var/www/storage"]
+          volumeMounts:
+            - name: laravel-storage
+              mountPath: /var/www/storage
+      volumes:
+        - name: laravel-storage
+          persistentVolumeClaim:
+            claimName: laravel-storage-pvc
       containers:
         - name: migrate
           image: 043309367638.dkr.ecr.us-east-1.amazonaws.com/laravel-k8s:latest
@@ -31,3 +41,6 @@ spec:
           envFrom:
             - secretRef:
                 name: laravel-secrets
+          volumeMounts:
+            - name: laravel-storage
+              mountPath: /var/www/storage
