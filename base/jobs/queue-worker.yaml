@@ -25,7 +25,7 @@ spec:
           command: ['sh', '-c', 'until nc -z mysql 3306; do echo "Waiting for MySQL..."; sleep 5; done']
         - name: fix-storage-permissions
           image: busybox
-          command: ["sh", "-c", "chown -R 1000:1000 /var/www/storage"]
+          command: ["sh", "-c", "chown -R www-data:www-data /var/www/storage"]
           volumeMounts:
             - name: laravel-storage
               mountPath: /var/www/storage
